@@ -117,8 +117,21 @@ p {
   margin-left: 1rem;
 }
 
+.nav__link {
+  color: var(--color-highlight-dark);
+  font-weight: bold;
+}
+
+.nav__link:focus,
+.nav__link:hover,
+.nav__link--active {
+  font-weight: bold;
+  color: var(--color-primary-yellow);
+  border-bottom: 2px solid var(--color-primary-yellow);
+}
+
 .sidebar {
-  background-color: var(--color-highlight-light);
+  background-color: #fff;
   position: fixed;
   top: var(--header-height);
   right: 0;
@@ -150,6 +163,14 @@ p {
 
 .footer {
   text-align: center;
+}
+
+#error-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 @media screen and (min-width: 720px) {

@@ -1,23 +1,32 @@
 import { useState } from 'react';
-import hamburger from '../assets/icon _hamburger menu.svg'
-import close from '../assets/icon_close.svg'
+import hamburger from '../assets/icon _hamburger menu.svg';
+import close from '../assets/icon_close.svg';
 import Sidebar from './Sidebar';
+import { NavLink } from 'react-router-dom';
 
 const menuItems = [
-  { href: '#', text: 'Home' },
-  { href: '#', text: 'About' },
-  { href: '#', text: 'Menu' },
-  { href: '#', text: 'Reservations' },
-  { href: '#', text: 'Order Online' },
-  { href: '#', text: 'Login' },
+  { href: '/', text: 'Home' },
+  { href: '/about', text: 'About' },
+  { href: '/menu', text: 'Menu' },
+  { href: '/booking', text: 'Reservations' },
+  { href: '/order', text: 'Order Online' },
+  { href: '/login', text: 'Login' },
 ];
 
-function NavLinks() {
+function NavLinks({ handleClick }) {
   return (
     <ul className="nav__list">
       {menuItems.map((menu) => (
         <li key={menu.text}>
-          <a href={menu.href}>{menu.text}</a>
+          <NavLink
+            to={menu.href}
+            className={({ isActive }) =>
+              isActive ? 'nav__link--active' : 'nav__link'
+            }
+            onClick={handleClick}
+          >
+            {menu.text}
+          </NavLink>
         </li>
       ))}
     </ul>
@@ -31,17 +40,17 @@ export default function Nav() {
     setShowMenu(!showMenu);
   };
 
-  // const closeMenuOnMobile = () => {
-  //   if (window.innerWidth <= 1150) {
-  //     setShowMenu(false);
-  //   }
-  // };
-  
+  const closeMenuOnMobile = () => {
+    if (window.innerWidth < 720) {
+      setShowMenu(false);
+    }
+  };
+
   return (
     <>
       <nav className="nav">
         <div className="nav__desktop">
-          <NavLinks />
+          <NavLinks handleClick={closeMenuOnMobile} />
         </div>
         <div className="nav__mobile">
           <button onClick={toggleMenu}>
@@ -63,7 +72,7 @@ export default function Nav() {
           </button>
         </div>
         <Sidebar isOpen={showMenu}>
-          <NavLinks />
+          <NavLinks handleClick={closeMenuOnMobile} />
         </Sidebar>
       </nav>
     </>
