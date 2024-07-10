@@ -1,15 +1,80 @@
-body {
+@import url(https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700;800&family=Markazi+Text:wght@500&display=swap);
+
+:root {
+  --color-primary-green: #495e57;
+  --color-primary-yellow: #f4ce14;
+  --color-secondary-dark: #ee9972;
+  --color-secondary-light: #fbdabb;
+  --color-highlight-dark: #333333;
+  --color-highlight-light: #edefee;
+
+  /* font sizes */
+
+  /* responsive considerations */
+  --header-height: 100px;
+
+  /* borders */
+  --border-button: 50%;
+  --border-size: 16px;
+
+  /* shadows */
+}
+
+/* resets */
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Karla, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+button {
+  border: initial;
+  background-color: initial;
+  color: inherit;
+  font: inherit;
+  outline: none; /* Make sure there is a visual indicator for focus state */
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  padding: unset;
+  list-style: none;
+}
+
+h1 {
+  color: var(--color-primary-yellow);
+  font-family: Markazi Text, serif;
+  font-size: 64px;
+  letter-spacing: 2px;
+}
+
+/* sub heading */
+h2 {
+  font-size: 40px;
+}
+
+/* card title */
+h3 {
+}
+
+p {
+  color: var(--color-primary-green);
+  line-height: 1.5;
+}
+
+.lead-text {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 #root {
@@ -19,33 +84,68 @@ code {
 .header {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+  height: var(--header-height);
 }
 
 .logo {
+  width: 150px;
+}
+
+.nav__desktop {
   display: none;
 }
 
+.nav__mobile {
+  position: relative;
+}
+
+.nav__mobile button img {
+  width: 25px;
+  height: 25px;
+}
+
 .nav ul {
-  padding: unset;
   text-align: center;
 }
 
 .nav li {
   display: inline-block;
-  list-style: none;
   margin-left: 1rem;
+}
+
+.sidebar {
+  background-color: var(--color-highlight-light);
+  position: fixed;
+  top: var(--header-height);
+  right: 0;
+  width: 300px;
+  height: calc(100vh - var(--header-height));
+  overflow: hidden;
+  transform: translateX(100%);
+  transition: all 1s;
+}
+
+.sidebar--open {
+  transform: translateX(0);
+}
+
+.sidebar .nav__list li {
+  display: block;
+  margin: 0 auto;
+  padding: 1rem;
+  width: 80%;
 }
 
 .main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 80vh;
-  background-color: yellow;
 }
 
 .footer {
@@ -53,11 +153,23 @@ code {
 }
 
 @media screen and (min-width: 720px) {
-  .header {
-    justify-content: space-between;
+  .hamburger-icon {
+    display: none;
   }
 
-  .logo{
+  .sidebar {
+    display: none;
+  }
+
+  .nav__desktop {
     display: block;
+  }
+
+  .nav__mobile {
+    display: none;
+  }
+
+  .logo {
+    width: 250px;
   }
 }
