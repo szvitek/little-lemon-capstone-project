@@ -17,17 +17,16 @@ function NavLinks({ handleClick }) {
   return (
     <ul className="nav__list">
       {menuItems.map((menu) => (
-        <li key={menu.text}>
-          <NavLink
-            to={menu.href}
-            className={({ isActive }) =>
-              isActive ? 'nav__link--active' : 'nav__link'
-            }
-            onClick={handleClick}
-          >
-            {menu.text}
-          </NavLink>
-        </li>
+        <NavLink
+          key={menu.text}
+          to={menu.href}
+          className={({ isActive }) =>
+            isActive ? 'nav__link--active' : 'nav__link'
+          }
+          onClick={handleClick}
+        >
+          <li>{menu.text}</li>
+        </NavLink>
       ))}
     </ul>
   );
