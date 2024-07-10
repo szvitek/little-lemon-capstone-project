@@ -1,3 +1,3 @@
 export default function Main() {
-  return <main>Main</main>;
+  return <main className="main">Main</main>;
 }

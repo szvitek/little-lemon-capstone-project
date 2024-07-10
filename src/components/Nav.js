@@ -9,7 +9,7 @@ const menuItems = [
 
 export default function Nav() {
   return (
-    <nav>
+    <nav className="nav">
       <ul>
         {menuItems.map((menu) => (
           <li key={menu.text}>
