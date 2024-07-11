@@ -63,12 +63,7 @@ h2 {
   font-size: 40px;
 }
 
-/* card title */
-h3 {
-}
-
 p {
-  color: var(--color-primary-green);
   line-height: 1.5;
 }
 
@@ -154,10 +149,6 @@ p {
 }
 
 .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   min-height: 80vh;
 }
 
@@ -171,6 +162,232 @@ p {
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+/* ---------------------- hero ---------------------- */
+
+.hero {
+  background-color: var(--color-primary-green);
+}
+
+.hero__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero__details {
+  color: var(--color-highlight-light);
+}
+
+.hero__link {
+  display: inline-block;
+  margin-top: 3rem;
+  background-color: var(--color-primary-yellow);
+  border: 2px solid var(--color-primary-yellow);
+  padding: 1rem 2rem;
+  border-radius: var(--border-size);
+  color: var(--color-primary-green);
+  font-weight: 800;
+  transition: all 500ms;
+}
+
+.hero__link:hover,
+.hero__link:focus {
+  color: var(--color-primary-yellow);
+  background-color: #495e57;
+  border: 2px solid var(--color-primary-yellow);
+}
+
+.hero__image > img {
+  display: none;
+}
+
+/* ---------------------- specials ---------------------- */
+.specials {
+  margin-top: 5rem;
+}
+
+.specials__container {
+  max-width: 1200px;
+  padding: 0 2rem;
+  margin: 0 auto;
+}
+
+.specials__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.specials__header > h3 {
+  font-size: xx-large;
+}
+
+.specials__link {
+  display: inline-block;
+  background-color: var(--color-primary-yellow);
+  border: 2px solid var(--color-primary-yellow);
+  padding: 1rem 2rem;
+  border-radius: var(--border-size);
+  color: var(--color-primary-green);
+  font-weight: 800;
+  transition: all 500ms;
+}
+
+.specials__link:hover,
+.specials__link:focus {
+  color: var(--color-primary-green);
+  background-color: transparent;
+  border: 2px solid var(--color-primary-green);
+}
+.specials__card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* ---------------------- card ---------------------- */
+
+.card {
+  background-color: var(--color-highlight-light);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  box-shadow: 2px 2px 2px 0px var(--color-highlight-dark);
+  max-width: 60%;
+}
+
+.card__img {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.card__content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: x-large;
+}
+
+.card__price {
+  color: var(--color-secondary-dark);
+}
+
+.card__action {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-weight: bold;
+  color: var(--color-primary-green);
+  width: fit-content;
+  border-bottom: 2px solid transparent;
+  transition: all 500ms;
+}
+
+.card__action:hover {
+  border-bottom: 2px solid var(--color-primary-green);
+}
+
+/* ---------------------- testimonials ---------------------- */
+
+.testimonials__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ---------------------- chicago ---------------------- */
+
+.chicago__container {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.chicago__details p {
+  margin-top: 2rem;
+  font-size: larger;
+  font-weight: 600;
+}
+
+.chicago__images {
+  position: relative;
+  margin: 2rem auto;
+}
+
+.chicago__image {
+  width: 150px;
+  height: 200px;
+  border-radius: var(--border-size);
+  object-fit: cover;
+  object-position: 75%;
+  margin-right: 1.5rem;
+}
+
+/* ---------------------- footer ---------------------- */
+.footer {
+  font-size: small;
+}
+
+.footer h5 {
+  font-size: medium;
+  margin-bottom: 0.5rem;
+}
+
+.footer__container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 5rem auto;
+  padding: 0 2rem;
+}
+
+.footer__logo {
+  order:2;
+}
+
+.footer__details {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1.5rem;
+  text-align: start;
+  order:1;
+}
+
+
+/* ---------------------- responsive ---------------------- */
+
+@media screen and (min-width: 510px) {
+  .hero__details p {
+    max-width: 80%;
+  }
+
+  .hero__image > img {
+    display: unset;
+    border-radius: 16px;
+
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+  }
 }
 
 @media screen and (min-width: 720px) {
@@ -192,5 +409,69 @@ p {
 
   .logo {
     width: 250px;
+  }
+
+  .hero__details {
+    max-width: 70%;
+  }
+
+  .hero__image > img {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    bottom: -40px;
+    right: 30px;
+    border-radius: 16px;
+  }
+
+  .specials__card-container {
+    justify-content: space-evenly;
+  }
+
+  .footer__details {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .card {
+    max-width: 350px;
+  }
+  
+  .chicago__details {
+    max-width: 50%;
+  }
+
+  .chicago__container {
+    flex-direction: row;
+  }
+
+  .chicago__image {
+    position: absolute;
+    width: 200px;
+    height: 300px;
+  }
+
+  .chicago__image--fg {
+    right: 1rem;
+  }
+
+  .chicago__image--bg {
+    top: 5rem;
+    right: -9rem;
+  }
+
+  .footer__container {
+    flex-direction: row;
+    gap: 5rem;
+  }
+
+  .footer__logo {
+    order: 1;
+  }
+
+  .footer__details {
+    flex: 1;
   }
 }

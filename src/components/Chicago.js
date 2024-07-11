@@ -3,18 +3,37 @@ import chcagoImg2 from '../assets/Mario and Adrian b.jpg';
 
 export default function Chicago() {
   return (
-    <section>
-      <div>
-        <h1>Little Lemon</h1>
-        <h2>Chicago</h2>
-
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia ab maiores laboriosam autem, libero ducimus, corrupti rem obcaecati, eius tenetur dolore quibusdam quasi sed iusto voluptatum delectus dolores earum voluptate voluptas ea sequi praesentium. Iste ipsam fugiat ducimus eveniet repellat, esse ipsum illo voluptates sequi? Quaerat deserunt beatae culpa earum!
-        </p>
-      </div>
-      <div>
-        <img src={chcagoImg1} alt="Chicago 1" height={200} />
-        <img src={chcagoImg2} alt="Chicago 2" height={200} />
+    <section className="chicago">
+      <div className="chicago__container">
+        <div className="chicago__details">
+          <h1>Little Lemon</h1>
+          <h2>Chicago</h2>
+          <p>
+            Little Lemon is owned by two Italian brothers, Mario and Adrian, who
+            moved to the United States to pursue their shared dream of owning a
+            restaurant.
+          </p>
+          <p>
+            To craft the menu, Mario relies on family recipes and his experience
+            as a chef in Italy. Adrian does all the marketing for the restaurant
+            and led the effort to expand the menu beyond classic Italian to
+            incorporate additional cuisines from the Mediterranean region.
+          </p>
+        </div>
+        <div className="chicago__images">
+          <img
+            className="chicago__image chicago__image--bg"
+            src={chcagoImg1}
+            alt="Chicago 1"
+            height={200}
+          />
+          <img
+            className="chicago__image chicago__image--fg"
+            src={chcagoImg2}
+            alt="Chicago 2"
+            height={200}
+          />
+        </div>
       </div>
     </section>
   );

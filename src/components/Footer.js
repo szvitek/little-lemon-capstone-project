@@ -39,7 +39,7 @@ const links = [
   },
 ];
 
-function RenderFooterSection() {
+function RenderFooterSections() {
   return (
     <>
       {links.map((category) => (
@@ -61,9 +61,14 @@ function RenderFooterSection() {
 export default function Footer() {
   return (
     <footer className="footer">
-      <img src={footerLogo} alt="footer logo" height={150} />
-
-      <RenderFooterSection />
+      <div className="footer__container">
+        <div className="footer__logo">
+          <img src={footerLogo} alt="footer logo" height={150} />
+        </div>
+        <div className="footer__details">
+          <RenderFooterSections />
+        </div>
+      </div>
     </footer>
   );
 }
