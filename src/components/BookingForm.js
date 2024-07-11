@@ -1,14 +1,6 @@
 import { useState } from 'react';
 
-export default function BookingForm() {
-  const [availableTimes, setAvailableTimes] = useState([
-    '17:00',
-    '18:00',
-    '19:00',
-    '20:00',
-    '21:00',
-    '22:00',
-  ]);
+export default function BookingForm({ availableTimes }) {
   const [date, setDate] = useState('');
   const [time, setTime] = useState(availableTimes[0]);
   const [guests, setGuests] = useState('');
@@ -21,9 +13,9 @@ export default function BookingForm() {
       date,
       time,
       guests,
-      occasion
-    })
-  }
+      occasion,
+    });
+  };
 
   return (
     <form className="booking-form" onSubmit={handleSubmit}>
@@ -44,8 +36,10 @@ export default function BookingForm() {
           value={time}
           onChange={(e) => setTime(e.target.value)}
         >
-          {availableTimes.map(time => (
-            <option key={time} value={time}>{time}</option>
+          {availableTimes.map((time) => (
+            <option key={time} value={time}>
+              {time}
+            </option>
           ))}
         </select>
       </div>
