@@ -1,3 +1,9 @@
+import BookingForm from '../components/BookingForm';
+
 export default function Booking() {
-  return <div>Booking</div>;
+  return (
+    <div className='booking__container'>
+      <BookingForm />
+    </div>
+  );
 }

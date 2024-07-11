@@ -21,7 +21,7 @@ function NavLinks({ handleClick }) {
           key={menu.text}
           to={menu.href}
           className={({ isActive }) =>
-            isActive ? 'nav__link--active' : 'nav__link'
+            isActive ? 'nav__link nav__link--active' : 'nav__link'
           }
           onClick={handleClick}
         >

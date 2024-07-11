@@ -373,6 +373,13 @@ p {
 }
 
 
+/* ---------------------- booking form ---------------------- */
+.booking-form {
+  display: grid;
+  max-width: 200px;
+  gap: 20px;
+}
+
 /* ---------------------- responsive ---------------------- */
 
 @media screen and (min-width: 510px) {

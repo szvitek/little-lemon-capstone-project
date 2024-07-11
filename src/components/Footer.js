@@ -32,9 +32,9 @@ const links = [
   {
     title: 'Socials',
     items: [
-      { to: 'https://instagram.com', text: 'Instagram' },
-      { to: 'https://facebook.com', text: 'Facebook' },
-      { to: 'https://youtube.com', text: 'Youtube' },
+      { to: 'https://instagram.com', text: 'Instagram', external: true },
+      { to: 'https://facebook.com', text: 'Facebook', external: true },
+      { to: 'https://youtube.com', text: 'Youtube', external: true },
     ],
   },
 ];
@@ -46,9 +46,13 @@ function RenderFooterSections() {
         <div key={category.title}>
           <h5>{category.title}</h5>
           <ul>
-            {category.items.map(link => (
+            {category.items.map((link) => (
               <li key={link.text}>
-                {link.to ? <Link to={link.to}>{link.text}</Link> : <>{link.text}</>}
+                {link.to ? (
+                  <Link to={link.to} target={link.external ? '_blank' : '_self'}>{link.text}</Link>
+                ) : (
+                  <>{link.text}</>
+                )}
               </li>
             ))}
           </ul>
