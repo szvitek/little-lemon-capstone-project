@@ -1,9 +1,11 @@
 import { useState } from 'react';
 
-export default function BookingForm({ availableTimes }) {
-  const [date, setDate] = useState('');
+const today = new Date().toISOString().split('T')[0];
+
+export default function BookingForm({ availableTimes, dispatch }) {
+  const [date, setDate] = useState(today);
   const [time, setTime] = useState(availableTimes[0]);
-  const [guests, setGuests] = useState('');
+  const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState('birthday');
 
   const handleSubmit = (e) => {
@@ -26,7 +28,10 @@ export default function BookingForm({ availableTimes }) {
         type="date"
         id="res-date"
         value={date}
-        onChange={(e) => setDate(e.target.value)}
+        onChange={(e) => {
+          setDate(e.target.value)
+          dispatch({ type: 'addDate', payload: e.target.value })
+        }}
       />
 
       <label htmlFor="res-time">Choose time</label>

@@ -36,7 +36,7 @@ function CustomerCard({ name, img, rating, text }) {
 export default function CustomersSay() {
   return (
     <section className="testimonials">
-      <div class="testimonials__container">
+      <div className="testimonials__container">
         <h2>Testimonials</h2>
         
         {/* cards container */}
