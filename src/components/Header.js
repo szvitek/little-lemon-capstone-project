@@ -1,9 +1,14 @@
-import logo from '../assets/logo.png'
-import Nav from "./Nav";
+import { Link } from 'react-router-dom';
+import logo from '../assets/logo.png';
+import Nav from './Nav';
 
 export default function Header() {
-  return <header className='header'>
-    <img className='logo' src={logo} alt="Little lemon logo" width={250} />
-    <Nav />
-  </header>;
+  return (
+    <header className="header">
+      <Link to="/">
+        <img className="logo" src={logo} alt="Little lemon logo" width={250} />
+      </Link>
+      <Nav />
+    </header>
+  );
 }

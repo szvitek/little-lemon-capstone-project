@@ -1,10 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 
-// skip logic for now until figure out how to test the app with router
 test('renders Little Lemon home page', () => {
-  // render(<App />);
-  // const element = screen.getByText(/Home/i);
-  // expect(element).toBeInTheDocument();
-  expect(true).toBe(true);
+  render(<App />, { wrapper: BrowserRouter });
+
+  const element = screen.getByText(
+    /We are a family owned Mediterranean restaurant/i
+  );
+
+  expect(element).toBeInTheDocument();
 });

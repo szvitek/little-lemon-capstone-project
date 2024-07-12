@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const today = new Date().toISOString().split('T')[0];
 
-export default function BookingForm({ availableTimes, dispatch }) {
+export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
+  const navigate = useNavigate();
+  
   const [date, setDate] = useState(today);
   const [time, setTime] = useState(availableTimes[0]);
   const [guests, setGuests] = useState(1);
@@ -17,6 +20,17 @@ export default function BookingForm({ availableTimes, dispatch }) {
       guests,
       occasion,
     });
+
+    const result = onSubmit({
+      date,
+      time,
+      guests,
+      occasion,
+    });
+
+    if (result) {
+      navigate('/booking/confirmed');
+    }
   };
 
   return (
