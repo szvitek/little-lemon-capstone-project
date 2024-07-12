@@ -19,6 +19,7 @@ export default function BookingForm({ availableTimes }) {
 
   return (
     <form className="booking-form" onSubmit={handleSubmit}>
+      <h2>Book Now</h2>
       <div>
         <label htmlFor="res-date">Choose date</label>
         <input
