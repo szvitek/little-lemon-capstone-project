@@ -308,7 +308,77 @@ p {
 
 .testimonials__container {
   max-width: 1200px;
+  margin: 5rem auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonials__container > h2 {
+  color: var(--color-primary-green);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.testimonials__cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-evenly;
+}
+
+.customer-card {
+  display: flex;
+  align-items: center;
+  border-radius: var(--border-size);
+  background-color: var(--color-primary-green);
+  padding: 1rem;
+  width: 100%;
+}
+
+.customer-card__details {
+  margin-left: 1rem;
+  width: 70%;
+  color: var(--color-highlight-light);
+}
+
+.customer-card__image {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 50%;
   margin: 0 auto;
+}
+
+.customer-card__name {
+  font-weight: bold;
+  font-size: large;
+  color: var(--color-primary-yellow);
+}
+
+.customer-card__rating {
+  font-style: italic;
+  color: var(--color-secondary-light);
+}
+
+.customer-card__text {
+  position: relative;
+  margin-top: 10px;
+  font-style: italic;
+}
+.customer-card__text::before,
+.customer-card__text::after {
+  content: '"';
+  font-size: 2rem;
+  font-style: italic;
+  color: var(--color-secondary-dark);
+  line-height: 0;
+  position: relative;
+  top: 5px;
+}
+
+.customer-card__text::before {
+  margin-right: 5px;
 }
 
 /* ---------------------- chicago ---------------------- */
@@ -360,7 +430,7 @@ p {
 }
 
 .footer__logo {
-  order:2;
+  order: 2;
 }
 
 .footer__details {
@@ -369,15 +439,45 @@ p {
   align-items: start;
   gap: 1.5rem;
   text-align: start;
-  order:1;
+  order: 1;
 }
-
 
 /* ---------------------- booking form ---------------------- */
 .booking-form {
   display: grid;
-  max-width: 200px;
-  gap: 20px;
+  width: 80%;
+  max-width: 600px;
+  margin: 4rem auto;
+  border: 1px solid transparent;
+  padding: 1rem;
+}
+
+.booking-form h2 {
+  text-align: center;
+  color: var(--color-primary-green);
+}
+
+.booking-form label{
+  margin-top: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.booking-form input[type='submit'] {
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 2rem;
+  padding: 10px 20px;
+  border-radius: var(--border-size);
+  border: 2px solid transparent;
+  cursor: pointer;
+  background-color: var(--color-primary-green);
+  color: var(--color-primary-yellow);
+}
+
+.booking-form input[type='submit']:hover,
+.booking-form input[type='submit']:focus {
+  border-color: var(--color-secondary-dar);
+  color: var(--color-secondary-dark);
 }
 
 /* ---------------------- responsive ---------------------- */
@@ -431,6 +531,18 @@ p {
     border-radius: 16px;
   }
 
+  .customer-card {
+    flex-direction: column;
+    width: 350px;
+    padding: 1rem;
+  }
+
+  .customer-card__details {
+    margin-top: 1rem;
+    text-align: center;
+    width: 100%;
+  }
+
   .specials__card-container {
     justify-content: space-evenly;
   }
@@ -439,13 +551,19 @@ p {
     flex-direction: row;
     justify-content: space-between;
   }
+
+  .booking-form {
+    border: 1px solid var(--color-highlight-dark);
+    border-radius: var(--border-size);
+    box-shadow: 0px 0px 10px 10px gray;
+  }
 }
 
 @media screen and (min-width: 1000px) {
   .card {
     max-width: 350px;
   }
-  
+
   .chicago__details {
     max-width: 50%;
   }
