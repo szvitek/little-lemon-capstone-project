@@ -445,11 +445,14 @@ p {
 /* ---------------------- booking form ---------------------- */
 .booking-form {
   display: grid;
-  width: 80%;
   max-width: 600px;
   margin: 4rem auto;
   border: 1px solid transparent;
   padding: 1rem;
+}
+
+.booking-form__error {
+  color: red;
 }
 
 .booking-form h2 {
@@ -457,12 +460,38 @@ p {
   color: var(--color-primary-green);
 }
 
-.booking-form label{
+.booking-form > label{
   margin-top: 1.5rem;
   margin-bottom: 0.3rem;
 }
 
-.booking-form input[type='submit'] {
+.booking-form__guests {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.booking-form__number {
+  font-size: x-large;
+  font-weight: bold;
+  margin: 0 1rem;
+}
+
+.booking-form__guests button {
+  /* padding: 5px; */
+  width: 30px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+
+.booking-form__guests button:hover,
+.booking-form__guests button:focus {
+  border: 1px solid var(--color-primary-green);
+
+}
+
+.booking-form button[type='submit'] {
   width: fit-content;
   margin: 0 auto;
   margin-top: 2rem;
@@ -470,14 +499,22 @@ p {
   border-radius: var(--border-size);
   border: 2px solid transparent;
   cursor: pointer;
+  background-color: var(--color-primary-yellow);
+  color: var(--color-primary-green);
+}
+
+.booking-form button[type='submit']:hover,
+.booking-form button[type='submit']:focus {
+  border-color: var(--color-primary-green);
   background-color: var(--color-primary-green);
   color: var(--color-primary-yellow);
 }
 
-.booking-form input[type='submit']:hover,
-.booking-form input[type='submit']:focus {
-  border-color: var(--color-secondary-dar);
+.booking-form button[type='submit']:disabled {
+  cursor: not-allowed;
+  border-color: var(--color-secondary-dark);
   color: var(--color-secondary-dark);
+  opacity: 0.5;
 }
 
 /* ---------------------- responsive ---------------------- */
@@ -553,6 +590,7 @@ p {
   }
 
   .booking-form {
+    width: 80%;
     border: 1px solid var(--color-highlight-dark);
     border-radius: var(--border-size);
     box-shadow: 0px 0px 10px 10px gray;
