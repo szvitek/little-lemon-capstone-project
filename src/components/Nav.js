@@ -24,6 +24,7 @@ function NavLinks({ handleClick }) {
             isActive ? 'nav__link nav__link--active' : 'nav__link'
           }
           onClick={handleClick}
+          aria-label={menu.text}
         >
           <li>{menu.text}</li>
         </NavLink>
@@ -52,7 +53,11 @@ export default function Nav() {
           <NavLinks handleClick={closeMenuOnMobile} />
         </div>
         <div className="nav__mobile">
-          <button onClick={toggleMenu}>
+          <button
+            onClick={toggleMenu}
+            aria-label="hamburger menu"
+            aria-expanded={showMenu}
+          >
             {!showMenu ? (
               <img
                 key="open"

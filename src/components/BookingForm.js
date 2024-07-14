@@ -67,6 +67,8 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         min={today}
         value={formik.values.date}
         data-testid="input-date"
+        aria-label="Choose a date"
+        aria-required="true"
         onChange={async (e) => {
           formik.handleChange(e);
           await formik.setFieldValue('date', e.target.value, true);
@@ -75,15 +77,17 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         }}
         onBlur={formik.handleBlur}
       />
-      <p className="booking-form__error">
+      <p className="booking-form__error" aria-label="date error">
         {formik.touched.date && formik.errors.date}
       </p>
 
-      <label htmlFor="res-time">Choose time</label>
+      <label htmlFor="time">Choose time</label>
       <select
         id="time"
         name="time"
         data-testid="input-time"
+        aria-label="Choose a time"
+        aria-required="true"
         required
         {...formik.getFieldProps('time')}
       >
@@ -91,12 +95,17 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
           Select a time
         </option>
         {availableTimes.map((time) => (
-          <option key={time} value={time}>
+          <option
+            key={time}
+            value={time}
+            aria-label={time}
+            aria-selected={formik.values.time === time}
+          >
             {time}
           </option>
         ))}
       </select>
-      <p className="booking-form__error">
+      <p className="booking-form__error" aria-label="time error">
         {formik.touched.time && formik.errors.time}
       </p>
 
@@ -106,6 +115,7 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
           <button
             type="button"
             data-testid="guests-decrement"
+            aria-label="decrement guests"
             onClick={() => {
               const { guests } = formik.values;
               const newVal = guests > 1 ? guests - 1 : 1;
@@ -115,12 +125,17 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
           >
             -
           </button>
-          <span className="booking-form__number" data-testid="guests-text">
+          <span
+            className="booking-form__number"
+            data-testid="guests-text"
+            aria-label="number of guests"
+          >
             {formik.values.guests}
           </span>
           <button
             type="button"
             data-testid="guests-increment"
+            aria-label="increment guests"
             onClick={() => {
               const { guests } = formik.values;
               const newVal = guests < 10 ? guests + 1 : 10;
@@ -132,7 +147,7 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
           </button>
         </p>
       </div>
-      <p className="booking-form__error">
+      <p className="booking-form__error" aria-label="guests error">
         {formik.touched.guests && formik.errors.guests}
       </p>
 
@@ -141,20 +156,38 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         id="occasion"
         name="occasion"
         data-testid="select-occasion"
+        aria-label="Choose an occasion"
         required
         {...formik.getFieldProps('occasion')}
       >
-        <option value="" disabled>
+        <option value="" aria-disabled="true" disabled>
           Please select an occasion
         </option>
-        <option value="birthday">Birthday</option>
-        <option value="anniversary">Anniversary</option>
+        <option
+          value="birthday"
+          aria-label="birthday"
+          aria-selected={formik.values.occasion === 'birthday'}
+        >
+          Birthday
+        </option>
+        <option
+          value="anniversary"
+          aria-label="anniversary"
+          aria-selected={formik.values.occasion === 'birthday'}
+        >
+          Anniversary
+        </option>
       </select>
       <p className="booking-form__error">
         {formik.touched.occasion && formik.errors.occasion}
       </p>
 
-      <button type="submit" disabled={!(formik.isValid && formik.dirty)}>
+      <button
+        type="submit"
+        disabled={!(formik.isValid && formik.dirty)}
+        aria-disabled={!(formik.isValid && formik.dirty)}
+        aria-label="make your reservation"
+      >
         Make Your reservation
       </button>
     </form>

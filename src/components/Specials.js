@@ -14,14 +14,18 @@ function Card() {
       <div className="card__content">
         <div className="card__header">
           <h4>Greek Salad</h4>
-          <h4 className='card__price'>$12.99</h4>
+          <h4 className="card__price">$12.99</h4>
         </div>
         <div className="card__desc">
           The famous greek salad of crispy lettuce, peppers, olives and our
           chicago style feta cheese.garnished with crunchy garlic and rosemary
           croutons.
         </div>
-        <Link className="card__action" to="/order">
+        <Link
+          className="card__action"
+          to="/order"
+          aria-label="Order for delivery"
+        >
           Order for delivery
           <img src={basketIcon} alt="basket icon" height={20} />
         </Link>

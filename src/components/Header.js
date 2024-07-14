@@ -5,7 +5,7 @@ import Nav from './Nav';
 export default function Header() {
   return (
     <header className="header">
-      <Link to="/">
+      <Link to="/" aria-label="Little lemon home page">
         <img className="logo" src={logo} alt="Little lemon logo" width={250} />
       </Link>
       <Nav />

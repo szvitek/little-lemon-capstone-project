@@ -49,7 +49,13 @@ function RenderFooterSections() {
             {category.items.map((link) => (
               <li key={link.text}>
                 {link.to ? (
-                  <Link to={link.to} target={link.external ? '_blank' : '_self'}>{link.text}</Link>
+                  <Link
+                    to={link.to}
+                    target={link.external ? '_blank' : '_self'}
+                    aria-label={link.text}
+                  >
+                    {link.text}
+                  </Link>
                 ) : (
                   <>{link.text}</>
                 )}

@@ -13,7 +13,9 @@ export default function CallToAction() {
             traditional recipes served with a modern twist.
           </p>
 
-          <Link to='/booking' className='hero__link'>Book a table</Link>
+          <Link to="/booking" className="hero__link" aria-label="book a table">
+            Book a table
+          </Link>
         </div>
 
         <div className="hero__image">
