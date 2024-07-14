@@ -1,5 +1,6 @@
+import { addDays } from 'date-fns';
 import { fetchAPI } from './api';
-import { initializeTimes, updateTimes } from './utils';
+import { formatDate, initializeTimes, updateTimes } from './utils';
 
 test('Initializer functions works', () => {
   const result = initializeTimes();
@@ -30,10 +31,8 @@ test('updateTimes returns the default values', () => {
 });
 
 test('updateTimes returns the correct values for tomorrow', () => {
-  const today = new Date();
-  const tomorrow = new Date(today);
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const tomorrowString = tomorrow.toISOString().split('T')[0];
+  const tomorrow = addDays(new Date(), 1);
+  const tomorrowString = formatDate(tomorrow);
 
   const timesForTomorrow = fetchAPI(tomorrow);
   const result = updateTimes(['17:00', '21:30', '23:30'], {

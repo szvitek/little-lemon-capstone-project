@@ -1,4 +1,5 @@
 import { fetchAPI } from './api';
+import { formatISO } from 'date-fns';
 
 // reducer fn
 export function updateTimes(state, action) {
@@ -14,4 +15,8 @@ export function updateTimes(state, action) {
 // reducer init fn
 export function initializeTimes() {
   return fetchAPI(new Date());
+}
+
+export function formatDate(date) {
+  return formatISO(date, { representation: 'date' });
 }

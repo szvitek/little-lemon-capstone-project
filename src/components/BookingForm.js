@@ -1,8 +1,10 @@
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import { formatDate } from '../lib/utils';
+import { isBefore, isEqual, toDate } from 'date-fns';
 
-const today = new Date().toISOString().split('T')[0];
+const today = formatDate(new Date());
 const allowedOccasions = ['birthday', 'anniversary'];
 
 export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
@@ -27,7 +29,12 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
     validationSchema: Yup.object({
       date: Yup.date()
         .required('Date is required!')
-        .min(today, 'Invalid minimum date'),
+      .test('minimum value', 'Invalid minimum date', (value) => {
+        return (
+          isEqual(toDate(today), toDate(formatDate(value))) ||
+          isBefore(toDate(today), toDate(formatDate(value)))
+        );
+      }),
       time: Yup.string()
         .required('Time is required!')
         .test('is valid time', 'Invalid time', (value) => {
@@ -51,7 +58,7 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
     <form className="booking-form" onSubmit={formik.handleSubmit}>
       <h2>Book Now</h2>
 
-      <label htmlFor="res-date">Choose date</label>
+      <label htmlFor="date">Choose date</label>
       <input
         type="date"
         id="date"
@@ -59,11 +66,14 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         required
         min={today}
         value={formik.values.date}
+        data-testid="input-date"
         onChange={async (e) => {
-          dispatch({ type: 'addDate', payload: e.target.value });
           formik.handleChange(e);
+          await formik.setFieldValue('date', e.target.value, true);
           await formik.setFieldValue('time', '', true);
+          dispatch({ type: 'addDate', payload: e.target.value });
         }}
+        onBlur={formik.handleBlur}
       />
       <p className="booking-form__error">
         {formik.touched.date && formik.errors.date}
@@ -71,8 +81,9 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
 
       <label htmlFor="res-time">Choose time</label>
       <select
-        id="res-time"
+        id="time"
         name="time"
+        data-testid="input-time"
         required
         {...formik.getFieldProps('time')}
       >
@@ -94,6 +105,7 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         <p>
           <button
             type="button"
+            data-testid="guests-decrement"
             onClick={() => {
               const { guests } = formik.values;
               const newVal = guests > 1 ? guests - 1 : 1;
@@ -103,9 +115,12 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
           >
             -
           </button>
-          <span className="booking-form__number">{formik.values.guests}</span>
+          <span className="booking-form__number" data-testid="guests-text">
+            {formik.values.guests}
+          </span>
           <button
             type="button"
+            data-testid="guests-increment"
             onClick={() => {
               const { guests } = formik.values;
               const newVal = guests < 10 ? guests + 1 : 10;
@@ -125,6 +140,7 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
       <select
         id="occasion"
         name="occasion"
+        data-testid="select-occasion"
         required
         {...formik.getFieldProps('occasion')}
       >
