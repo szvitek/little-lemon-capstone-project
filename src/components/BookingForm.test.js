@@ -83,7 +83,7 @@ test('set an invalid date', async () => {
   expect(dateInput.value).toBe('2023-01-01');
 
   await waitFor(() => {
-    const errorMessage = screen.getByText('Invalid minimum date');
+    const errorMessage = screen.getByText('Invalid minimum date!');
     expect(errorMessage).toBeInTheDocument();
   });
 
@@ -311,6 +311,170 @@ test('change guests', async () => {
   });
 });
 
+test('name is empty', async () => {
+  const availableTimes = ['17:00', '18:00', '19:00'];
+  const dispatch = jest.fn().mockReturnValue(availableTimes);
+
+  render(
+    <BrowserRouter>
+      <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
+    </BrowserRouter>
+  );
+
+  const nameInput = screen.getByTestId('input-name');
+  fireEvent.blur(nameInput);
+
+  expect(nameInput.value).toBe('');
+
+  const errorMessage = await screen.findByText('Name is required!');
+  expect(errorMessage).toBeInTheDocument();
+  expect(nameInput.validity.valid).toBe(false);
+
+  const submitBtn = screen.getByText('Make Your reservation');
+  expect(submitBtn).toBeInTheDocument();
+  expect(submitBtn).toBeDisabled();
+});
+
+test('name is too short', async () => {
+  const availableTimes = ['17:00', '18:00', '19:00'];
+  const dispatch = jest.fn().mockReturnValue(availableTimes);
+
+  render(
+    <BrowserRouter>
+      <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
+    </BrowserRouter>
+  );
+
+  const nameInput = screen.getByTestId('input-name');
+  act(() => {
+    fireEvent.change(nameInput, { target: { value: 'xx' } });
+    fireEvent.blur(nameInput);
+  });
+
+  expect(nameInput.value).toBe('xx');
+  // expect(nameInput.validity.valid).toBe(false);
+
+  const errorMessage = await screen.findByText(
+    'Name must be at least 3 characters long!'
+  );
+  expect(errorMessage).toBeInTheDocument();
+
+  const submitBtn = screen.getByText('Make Your reservation');
+  expect(submitBtn).toBeInTheDocument();
+  expect(submitBtn).toBeDisabled();
+});
+
+test('name is valid', async () => {
+  const availableTimes = ['17:00', '18:00', '19:00'];
+  const dispatch = jest.fn().mockReturnValue(availableTimes);
+
+  render(
+    <BrowserRouter>
+      <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
+    </BrowserRouter>
+  );
+
+  const nameInput = screen.getByTestId('input-name');
+  act(() => {
+    fireEvent.change(nameInput, { target: { value: 'jon doe' } });
+    fireEvent.blur(nameInput);
+  });
+
+  expect(nameInput.value).toBe('jon doe');
+
+  const errorMessage = screen.queryByText(
+    'Name must be at least 3 characters long!'
+  );
+  expect(errorMessage).not.toBeInTheDocument();
+
+  const submitBtn = screen.getByText('Make Your reservation');
+  expect(submitBtn).toBeInTheDocument();
+  await waitFor(() => {
+    expect(submitBtn).toBeDisabled();
+  });
+});
+
+test('email is empty', async () => {
+  const availableTimes = ['17:00', '18:00', '19:00'];
+  const dispatch = jest.fn().mockReturnValue(availableTimes);
+
+  render(
+    <BrowserRouter>
+      <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
+    </BrowserRouter>
+  );
+
+  const emailInput = screen.getByTestId('input-email');
+  act(() => {
+    fireEvent.blur(emailInput);
+  });
+
+  expect(emailInput.value).toBe('');
+
+  const errorMessage = await screen.findByText('Email is required!');
+  expect(errorMessage).toBeInTheDocument();
+  expect(emailInput.validity.valid).toBe(false);
+
+  const submitBtn = screen.getByText('Make Your reservation');
+  expect(submitBtn).toBeInTheDocument();
+  expect(submitBtn).toBeDisabled();
+});
+
+test('email is invalid', async () => {
+  const availableTimes = ['17:00', '18:00', '19:00'];
+  const dispatch = jest.fn().mockReturnValue(availableTimes);
+
+  render(
+    <BrowserRouter>
+      <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
+    </BrowserRouter>
+  );
+
+  const emailInput = screen.getByTestId('input-email');
+  act(() => {
+    fireEvent.change(emailInput, { target: { value: 'invalidemail' } });
+    fireEvent.blur(emailInput);
+  });
+
+  expect(emailInput.value).toBe('invalidemail');
+
+  const errorMessage = await screen.findByText('Invalid email!');
+  expect(errorMessage).toBeInTheDocument();
+
+  const submitBtn = screen.getByText('Make Your reservation');
+  expect(submitBtn).toBeInTheDocument();
+  expect(submitBtn).toBeDisabled();
+});
+
+test('email is valid', async () => {
+  const availableTimes = ['17:00', '18:00', '19:00'];
+  const dispatch = jest.fn().mockReturnValue(availableTimes);
+
+  render(
+    <BrowserRouter>
+      <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
+    </BrowserRouter>
+  );
+
+  const emailInput = screen.getByTestId('input-email');
+
+  act(() => {
+    fireEvent.change(emailInput, { target: { value: 'email@test.com' } });
+    fireEvent.blur(emailInput);
+  });
+
+  expect(emailInput.value).toBe('email@test.com');
+
+  const errorMessage = screen.queryByText('Invalid email!');
+  expect(errorMessage).not.toBeInTheDocument();
+
+  const submitBtn = screen.getByText('Make Your reservation');
+  expect(submitBtn).toBeInTheDocument();
+  await waitFor(() => {
+    expect(submitBtn).toBeDisabled();
+  });
+});
+
 test('all fields are valid and submit form', async () => {
   const availableTimes = ['17:00', '18:00', '19:00'];
   const tomorrow = formatDate(addDays(new Date(), 1));
@@ -332,6 +496,9 @@ test('all fields are valid and submit form', async () => {
   const incrementBtn = screen.getByTestId('guests-increment');
   const guestsText = screen.getByTestId('guests-text');
   const occasionInput = screen.getByTestId('select-occasion');
+  const nameInput = screen.getByTestId('input-name');
+  const emailInput = screen.getByTestId('input-email');
+  const notesInput = screen.getByTestId('input-notes');
 
   act(async () => {
     fireEvent.change(dateInput, { target: { value: tomorrow } });
@@ -344,6 +511,15 @@ test('all fields are valid and submit form', async () => {
 
     fireEvent.change(occasionInput, { target: { value: 'anniversary' } });
     fireEvent.blur(occasionInput);
+
+    fireEvent.change(nameInput, { target: { value: 'jon doe' } });
+    fireEvent.blur(nameInput);
+
+    fireEvent.change(emailInput, { target: { value: 'email@test.com' } });
+    fireEvent.blur(emailInput);
+
+    fireEvent.change(notesInput, { target: { value: 'test' } });
+    fireEvent.blur(notesInput);
   });
 
   expect(dateInput.value).toBe(tomorrow);
@@ -353,6 +529,10 @@ test('all fields are valid and submit form', async () => {
   expect(guestsText.textContent).toBe('2');
   expect(occasionInput.value).toBe('anniversary');
   expect(occasionInput.validity.valid).toBe(true);
+  expect(nameInput.value).toBe('jon doe');
+  expect(nameInput.validity.valid).toBe(true);
+  expect(emailInput.value).toBe('email@test.com');
+  expect(emailInput.validity.valid).toBe(true);
 
   const submitBtn = await waitFor(() =>
     screen.findByText('Make Your reservation')
@@ -368,6 +548,9 @@ test('all fields are valid and submit form', async () => {
       time: '19:00',
       guests: 2,
       occasion: 'anniversary',
+      name: 'jon doe',
+      email: 'email@test.com',
+      notes: 'test',
     });
   });
 });

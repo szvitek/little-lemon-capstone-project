@@ -1,3 +1,7 @@
+import Placeholder from "../components/Placeholder";
+
 export default function Order() {
-  return <div>Order</div>;
+  return (
+    <Placeholder title="Order Page" />
+  );
 }

@@ -1,3 +1,7 @@
+import Placeholder from '../components/Placeholder';
+
 export default function Login() {
-  return <div>Login</div>;
+  return (
+    <Placeholder title="Login Page" />
+  );
 }

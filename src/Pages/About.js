@@ -1,3 +1,7 @@
+import Placeholder from '../components/Placeholder';
+
 export default function About() {
-  return <div>About</div>;
+  return (
+    <Placeholder title="About Page" />
+  );
 }

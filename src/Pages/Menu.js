@@ -1,3 +1,8 @@
+import Placeholder from "../components/Placeholder";
+
 export default function Menu() {
-  return <div>Menu</div>;
+  return (
+    <Placeholder title="Menu Page" />
+  );
+  
 }

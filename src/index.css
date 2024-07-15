@@ -149,10 +149,6 @@ p {
   width: 80%;
 }
 
-.main {
-  min-height: 80vh;
-}
-
 .footer {
   text-align: center;
 }
@@ -262,6 +258,8 @@ p {
   border-top-right-radius: 16px;
   box-shadow: 2px 2px 2px 0px var(--color-highlight-dark);
   max-width: 60%;
+  display: flex;
+  flex-direction: column;
 }
 
 .card__img {
@@ -269,6 +267,7 @@ p {
   border-top-right-radius: 16px;
   width: 100%;
   height: 250px;
+  min-height: 250px;
   object-fit: cover;
 }
 
@@ -277,6 +276,7 @@ p {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  flex-basis: 100%;
 }
 
 .card__header {
@@ -290,6 +290,15 @@ p {
   color: var(--color-secondary-dark);
 }
 
+.card__desc {
+  text-align: justify;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .card__action {
   display: flex;
   align-items: center;
@@ -299,6 +308,7 @@ p {
   width: fit-content;
   border-bottom: 2px solid transparent;
   transition: all 500ms;
+  margin-top: auto;
 }
 
 .card__action:hover {
@@ -446,14 +456,18 @@ p {
 /* ---------------------- booking form ---------------------- */
 .booking-form {
   display: grid;
-  max-width: 600px;
+  width: 100%;
   margin: 4rem auto;
   border: 1px solid transparent;
   padding: 1rem;
+  background-color: white;
+  opacity: 98%;
+  border-radius: var(--border-size);
 }
 
 .booking-form__error {
   color: red;
+  height: 1.5rem;
 }
 
 .booking-form h2 {
@@ -461,8 +475,8 @@ p {
   color: var(--color-primary-green);
 }
 
-.booking-form > label{
-  margin-top: 1.5rem;
+.booking-form > label {
+  margin-top: 0.5rem;
   margin-bottom: 0.3rem;
 }
 
@@ -477,19 +491,23 @@ p {
   font-size: x-large;
   font-weight: bold;
   margin: 0 1rem;
+  min-width: 2rem;
+  display: inline-block;
+  text-align: center;
 }
 
 .booking-form__guests button {
-  /* padding: 5px; */
   width: 30px;
+  height: 30px;
   border: 1px solid transparent;
   border-radius: 8px;
+  border: 1px solid var(--color-primary-green);
 }
 
 .booking-form__guests button:hover,
 .booking-form__guests button:focus {
   border: 1px solid var(--color-primary-green);
-
+  background-color: var(--color-highlight-light);
 }
 
 .booking-form button[type='submit'] {
@@ -516,6 +534,78 @@ p {
   border-color: var(--color-secondary-dark);
   color: var(--color-secondary-dark);
   opacity: 0.5;
+}
+
+/* ---------------------- confirmation ---------------------- */
+.confirmation {
+  display: grid;
+  gap: 3rem;
+  width: 100%;
+  margin: 4rem auto;
+  border: 1px solid transparent;
+  padding: 1rem;
+  background-color: white;
+  opacity: 98%;
+  border-radius: var(--border-size);
+}
+
+.confirmation__title {
+  text-align: center;
+}
+
+.confirmation__message {
+  text-align: justify;
+}
+
+.confirmation__link {
+  justify-self: center;
+  background-color: var(--color-primary-yellow);
+  border: 2px solid var(--color-primary-yellow);
+  padding: 1rem 2rem;
+  border-radius: var(--border-size);
+  color: var(--color-primary-green);
+  font-weight: 800;
+  transition: all 500ms;
+}
+
+.confirmation__link:hover,
+.confirmation__link:focus {
+  color: var(--color-primary-yellow);
+  background-color: #495e57;
+  border: 2px solid var(--color-primary-yellow);
+}
+
+/* ---------------------- placeholder ---------------------- */
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 65vh;
+  background-image: url('./assets/restaurant.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.placeholder__title {
+  background-color: var(--color-primary-green);
+  color: var(--color-secondary-dark);
+  padding: 1rem 3rem;
+  border-radius: var(--border-size);
+  font-size: 2rem;
+}
+
+.placeholder__title:hover {
+  background-color: var(--color-highlight-light);
+  color: var(--color-primary-yellow);
+}
+
+.placeholder__text {
+  font-size: 1rem;
+  border-radius: var(--border-size);
+  padding: 1rem 3rem;
 }
 
 /* ---------------------- responsive ---------------------- */
@@ -590,11 +680,12 @@ p {
     justify-content: space-between;
   }
 
-  .booking-form {
+  .booking-form,
+  .confirmation {
     width: 80%;
     border: 1px solid var(--color-highlight-dark);
-    border-radius: var(--border-size);
-    box-shadow: 0px 0px 10px 10px gray;
+    box-shadow: 0px 0px 10px 10px var(--color-highlight-dark);
+    max-width: 600px;
   }
 }
 

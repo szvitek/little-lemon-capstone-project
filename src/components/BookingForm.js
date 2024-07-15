@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { formatDate } from '../lib/utils';
 import { isBefore, isEqual, toDate } from 'date-fns';
@@ -16,28 +16,33 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
       time: '',
       guests: 1,
       occasion: '',
+      name: '',
+      email: '',
+      notes: '',
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
       const result = onSubmit(values);
 
       if (result) {
         formik.resetForm();
-        navigate('/booking/confirmed');
+        navigate({
+          pathname: '/booking/confirmed',
+          search: createSearchParams(values).toString(),
+        });
       }
     },
     validationSchema: Yup.object({
       date: Yup.date()
         .required('Date is required!')
-      .test('minimum value', 'Invalid minimum date', (value) => {
-        return (
-          isEqual(toDate(today), toDate(formatDate(value))) ||
-          isBefore(toDate(today), toDate(formatDate(value)))
-        );
-      }),
+        .test('minimum value', 'Invalid minimum date!', (value) => {
+          return (
+            isEqual(toDate(today), toDate(formatDate(value))) ||
+            isBefore(toDate(today), toDate(formatDate(value)))
+          );
+        }),
       time: Yup.string()
         .required('Time is required!')
-        .test('is valid time', 'Invalid time', (value) => {
+        .test('is valid time', 'Invalid time!', (value) => {
           return (
             /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(value) &&
             availableTimes.includes(value)
@@ -51,6 +56,11 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         .test('is valid occasion', 'Invalid occasion value!', (value) =>
           allowedOccasions.includes(value)
         ),
+      name: Yup.string()
+        .required('Name is required!')
+        .min(3, 'Name must be at least 3 characters long!'),
+      email: Yup.string().email('Invalid email!').required('Email is required!'),
+      notes: Yup.string(),
     }),
   });
 
@@ -181,6 +191,50 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
       <p className="booking-form__error">
         {formik.touched.occasion && formik.errors.occasion}
       </p>
+
+      <h2>Contact informations</h2>
+
+      <label htmlFor="name">Name</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        minLength={3}
+        required
+        data-testid="input-name"
+        aria-label="Your name"
+        aria-required="true"
+        {...formik.getFieldProps('name')}
+      />
+      <p className="booking-form__error">
+        {formik.touched.name && formik.errors.name}
+      </p>
+
+      <label htmlFor="email">Email</label>
+      <input
+        type="text"
+        name="email"
+        id="email"
+        required
+        data-testid="input-email"
+        aria-label="Email"
+        aria-required="true"
+        {...formik.getFieldProps('email')}
+      />
+      <p className="booking-form__error">
+        {formik.touched.email && formik.errors.email}
+      </p>
+
+      <label htmlFor="notes">Additional information</label>
+      <textarea
+        name="notes"
+        id="notes"
+        rows={5}
+        data-testid="input-notes"
+        aria-label="Additional notes"
+        aria-required="false"
+        {...formik.getFieldProps('notes')}
+      />
 
       <button
         type="submit"
