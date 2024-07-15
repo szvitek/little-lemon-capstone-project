@@ -17,9 +17,7 @@ function NavLinks({ handleClick }) {
   return (
     <ul className="nav__list">
       {menuItems.map((menu) => (
-        <li
-          key={menu.text}
-        >
+        <li key={menu.text}>
           <NavLink
             to={menu.href}
             className={({ isActive }) =>

@@ -260,7 +260,8 @@ p {
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   box-shadow: 2px 2px 2px 0px var(--color-highlight-dark);
-  max-width: 60%;
+  width: 100%;
+  max-width: 350px;
   display: flex;
   flex-direction: column;
 }
@@ -636,6 +637,10 @@ p {
     width: 120px;
     height: 120px;
     object-fit: cover;
+  }
+
+  .card {
+    width: 350px;
   }
 }
 
