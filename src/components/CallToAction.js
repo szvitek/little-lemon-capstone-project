@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import heroImg from '../assets/restauranfood.jpg';
+import heroImg from '../assets/restauranfood.webp';
 
 export default function CallToAction() {
   return (

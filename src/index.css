@@ -109,12 +109,14 @@ p {
 
 .nav li {
   display: inline-block;
+  margin-left: .2rem;
 }
 
 .nav__link {
   color: var(--color-highlight-dark);
   font-weight: bold;
-  margin-left: 1rem;
+  padding: 5px 10px;
+  border-radius: 10px;
 }
 
 .nav__link:focus,
@@ -123,6 +125,7 @@ p {
   font-weight: bold;
   color: var(--color-primary-yellow);
   border-bottom: 2px solid var(--color-primary-yellow);
+  background-color: var(--color-primary-green);
 }
 
 .sidebar {
@@ -253,7 +256,7 @@ p {
 /* ---------------------- card ---------------------- */
 
 .card {
-  background-color: var(--color-highlight-light);
+  border: 1px solid black;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   box-shadow: 2px 2px 2px 0px var(--color-highlight-dark);
@@ -287,7 +290,10 @@ p {
 }
 
 .card__price {
+  background-color: var(--color-highlight-dark);
   color: var(--color-secondary-dark);
+  border-radius: 5px;
+  padding: 2px 4px;
 }
 
 .card__desc {
@@ -402,6 +408,10 @@ p {
   flex-direction: column;
 }
 
+.chicago__title {
+  color: var(--color-primary-green);
+}
+
 .chicago__details p {
   margin-top: 2rem;
   font-size: larger;
@@ -427,7 +437,7 @@ p {
   font-size: small;
 }
 
-.footer h5 {
+.footer h3 {
   font-size: medium;
   margin-bottom: 0.5rem;
 }
@@ -451,6 +461,10 @@ p {
   gap: 1.5rem;
   text-align: start;
   order: 1;
+}
+
+.footer__details li {
+  padding: 5px 0;
 }
 
 /* ---------------------- booking form ---------------------- */
@@ -583,7 +597,7 @@ p {
   justify-content: center;
   align-items: center;
   min-height: 65vh;
-  background-image: url('./assets/restaurant.jpg');
+  background-image: url('./assets/restaurant.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50%;

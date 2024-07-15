@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import footerLogo from '../assets/footer-logo.png';
+import footerLogo from '../assets/footer-logo.webp';
 
 const links = [
   {
@@ -44,7 +44,7 @@ function RenderFooterSections() {
     <>
       {links.map((category) => (
         <div key={category.title}>
-          <h5>{category.title}</h5>
+          <h3>{category.title}</h3>
           <ul>
             {category.items.map((link) => (
               <li key={link.text}>
@@ -73,7 +73,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer__container">
         <div className="footer__logo">
-          <img src={footerLogo} alt="footer logo" height={150} />
+          <img src={footerLogo} alt="footer logo" height={150} width="auto" />
         </div>
         <div className="footer__details">
           <RenderFooterSections />

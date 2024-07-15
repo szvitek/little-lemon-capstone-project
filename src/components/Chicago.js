@@ -1,12 +1,12 @@
-import chcagoImg1 from '../assets/Mario and Adrian A.jpg';
-import chcagoImg2 from '../assets/Mario and Adrian b.jpg';
+import chcagoImg1 from '../assets/Mario and Adrian A.webp';
+import chcagoImg2 from '../assets/Mario and Adrian b.webp';
 
 export default function Chicago() {
   return (
     <section className="chicago">
       <div className="chicago__container">
         <div className="chicago__details">
-          <h1>Little Lemon</h1>
+          <h1 className="chicago__title">Little Lemon</h1>
           <h2>Chicago</h2>
           <p>
             Little Lemon is owned by two Italian brothers, Mario and Adrian, who

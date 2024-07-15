@@ -68,7 +68,9 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
     <form className="booking-form" onSubmit={formik.handleSubmit}>
       <h2>Book Now</h2>
 
-      <label htmlFor="date">Choose date</label>
+      <label htmlFor="date">
+        Choose date<sup>*</sup>
+      </label>
       <input
         type="date"
         id="date"
@@ -87,11 +89,13 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         }}
         onBlur={formik.handleBlur}
       />
-      <p className="booking-form__error" aria-label="date error">
+      <p className="booking-form__error" aria-label="date error" role="alert">
         {formik.touched.date && formik.errors.date}
       </p>
 
-      <label htmlFor="time">Choose time</label>
+      <label htmlFor="time">
+        Choose time<sup>*</sup>
+      </label>
       <select
         id="time"
         name="time"
@@ -115,7 +119,7 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
           </option>
         ))}
       </select>
-      <p className="booking-form__error" aria-label="time error">
+      <p className="booking-form__error" aria-label="time error" role="alert">
         {formik.touched.time && formik.errors.time}
       </p>
 
@@ -157,11 +161,13 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
           </button>
         </p>
       </div>
-      <p className="booking-form__error" aria-label="guests error">
+      <p className="booking-form__error" aria-label="guests error" role="alert">
         {formik.touched.guests && formik.errors.guests}
       </p>
 
-      <label htmlFor="occasion">Occasion</label>
+      <label htmlFor="occasion">
+        Occasion<sup>*</sup>
+      </label>
       <select
         id="occasion"
         name="occasion"
@@ -188,13 +194,19 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
           Anniversary
         </option>
       </select>
-      <p className="booking-form__error">
+      <p
+        className="booking-form__error"
+        aria-label="occasion error"
+        role="alert"
+      >
         {formik.touched.occasion && formik.errors.occasion}
       </p>
 
       <h2>Contact informations</h2>
 
-      <label htmlFor="name">Name</label>
+      <label htmlFor="name">
+        Name<sup>*</sup>
+      </label>
       <input
         type="text"
         name="name"
@@ -205,12 +217,15 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         aria-label="Your name"
         aria-required="true"
         {...formik.getFieldProps('name')}
+        autoComplete='name'
       />
-      <p className="booking-form__error">
+      <p className="booking-form__error" aria-label="name error" role="alert">
         {formik.touched.name && formik.errors.name}
       </p>
 
-      <label htmlFor="email">Email</label>
+      <label htmlFor="email">
+        Email<sup>*</sup>
+      </label>
       <input
         type="text"
         name="email"
@@ -220,8 +235,9 @@ export default function BookingForm({ availableTimes, dispatch, onSubmit }) {
         aria-label="Email"
         aria-required="true"
         {...formik.getFieldProps('email')}
+        autoComplete='email'
       />
-      <p className="booking-form__error">
+      <p className="booking-form__error" aria-label="email error" role="alert">
         {formik.touched.email && formik.errors.email}
       </p>
 

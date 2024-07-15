@@ -25,7 +25,7 @@ function CustomerCard({ name, img, rating, text }) {
     <div className="customer-card">
       <img className="customer-card__image" src={img} alt="customer" />
       <div className="customer-card__details">
-        <h4 className="customer-card__name">{name}</h4>
+        <h3 className="customer-card__name">{name}</h3>
         <span className="customer-card__rating">5/{rating}</span>
         <p className="customer-card__text">{text}</p>
       </div>

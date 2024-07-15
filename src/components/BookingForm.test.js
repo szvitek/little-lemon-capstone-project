@@ -149,8 +149,6 @@ test('set an empty time', async () => {
     fireEvent.blur(timeInput);
   });
 
-  console.log('xxx', timeInput.value);
-
   expect(timeInput.value).toBe('');
   expect(timeInput.validity.valid).toBe(false);
 
@@ -179,8 +177,6 @@ test('set a valid time', async () => {
   act(() => {
     fireEvent.change(timeInput, { target: { value: '17:00' } });
   });
-
-  console.log('xxx', timeInput.value);
 
   expect(timeInput.value).toBe('17:00');
   expect(timeInput.validity.valid).toBe(true);

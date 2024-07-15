@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import basketIcon from '../assets/Basket.svg';
 
 
-import greekSalad from '../assets/greek_salad.jpg';
-import bruchetta from '../assets/bruchetta.jpg';
-import lemonDessert from '../assets/lemon dessert.jpg';
+import greekSalad from '../assets/greek_salad.webp';
+import bruchetta from '../assets/bruchetta.webp';
+import lemonDessert from '../assets/lemon dessert.webp';
 
 const items = [
   {
@@ -56,7 +56,7 @@ function Card({ id, img, name, price, description }) {
           aria-label="Order for delivery"
         >
           Order for delivery
-          <img src={basketIcon} alt="basket icon" height={20} />
+          <img src={basketIcon} alt="basket icon" height={20} width={20} />
         </Link>
       </div>
     </div>
