@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/little-lemon-capstone-project/static/css/main.8f858d78.css",
+    "main.css": "/little-lemon-capstone-project/static/css/main.825a16c0.css",
     "main.js": "/little-lemon-capstone-project/static/js/main.009f841e.js",
     "static/js/453.cf6e0562.chunk.js": "/little-lemon-capstone-project/static/js/453.cf6e0562.chunk.js",
     "static/media/restaurant.webp": "/little-lemon-capstone-project/static/media/restaurant.fa3786ced4bb43e1523a.webp",
@@ -16,12 +16,12 @@
     "static/media/Basket.svg": "/little-lemon-capstone-project/static/media/Basket.fae9b50adb46a3bfa9273d6c25dc3935.svg",
     "static/media/icon _hamburger menu.svg": "/little-lemon-capstone-project/static/media/icon _hamburger menu.0da6f67ced800ab909f63d5144de37ee.svg",
     "static/media/icon_close.svg": "/little-lemon-capstone-project/static/media/icon_close.cac04c37a6d1ffed327b9f06452521d4.svg",
-    "main.8f858d78.css.map": "/little-lemon-capstone-project/static/css/main.8f858d78.css.map",
+    "main.825a16c0.css.map": "/little-lemon-capstone-project/static/css/main.825a16c0.css.map",
     "main.009f841e.js.map": "/little-lemon-capstone-project/static/js/main.009f841e.js.map",
     "453.cf6e0562.chunk.js.map": "/little-lemon-capstone-project/static/js/453.cf6e0562.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8f858d78.css",
+    "static/css/main.825a16c0.css",
     "static/js/main.009f841e.js"
   ]
 }
